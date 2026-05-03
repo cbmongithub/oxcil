@@ -1,0 +1,22 @@
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
