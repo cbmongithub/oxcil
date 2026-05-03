@@ -1,77 +1,87 @@
 /* Utilities
    Small reusable token-backed helpers for shared brand surfaces, decorative backgrounds,
    and reusable motion keyframes. */
-@layer utilities {
-  .oxcil-brand-surface {
-    background-color: var(--brand-surface-bg);
-    border-color: var(--brand-surface-border);
-    color: var(--brand-surface-foreground);
-  }
 
-  .bg-oxcil-brand-dot-grid {
-    background-image: radial-gradient(var(--brand-dot-grid-color) 1px, transparent 1px);
-    background-size: var(--brand-dot-grid-size) var(--brand-dot-grid-size);
+@keyframes background-ripple {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--ripple-cell-border) 14%, transparent)
+      inset;
+    border-color: var(--ripple-cell-border);
+    opacity: 0.26;
+  }
+  24% {
+    transform: scale(1);
+    border-color: color-mix(in oklab, var(--oxcil-brand) 86%, var(--ripple-cell-border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--oxcil-brand) 66%, transparent) inset,
+      0 0 34px color-mix(in oklab, var(--oxcil-brand) 26%, transparent);
+    opacity: 0.98;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--ripple-cell-border) 20%, transparent) inset,
+      0 0 12px color-mix(in oklab, var(--oxcil-brand) 14%, transparent);
+    border-color: color-mix(in oklab, var(--ripple-cell-border) 52%, transparent);
+    opacity: 0.28;
   }
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-10px) translateX(5px);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
   }
   50% {
-    transform: translateY(-5px) translateX(-5px);
-  }
-  75% {
-    transform: translateY(-15px) translateX(3px);
+    transform: translate3d(0, -8px, 0) scale(1.08);
+    opacity: 1;
   }
 }
 
-@keyframes scroll-left {
+@keyframes fade-in-delayed {
   0% {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
   }
   100% {
-    transform: translateX(-50%);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes scroll-right {
+@keyframes logo-marquee {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-@keyframes background-ripple {
-  0% {
-    transform: scale(1);
-    box-shadow: none;
-    border-color: var(--oxcil-neutral-800);
-    opacity: 0.62;
-  }
-  30% {
-    transform: scale(1.06);
-    border-color: color-mix(in oklab, var(--oxcil-brand-400) 80%, transparent);
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--oxcil-brand-400) 42%, transparent) inset,
-      0 0 28px color-mix(in oklab, var(--oxcil-brand-500) 28%, transparent);
-    opacity: 0.95;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--oxcil-brand-400) 20%, transparent) inset,
-      0 0 10px color-mix(in oklab, var(--oxcil-brand-500) 10%, transparent);
-    border-color: color-mix(in oklab, var(--oxcil-brand-500) 26%, var(--oxcil-neutral-800));
-    opacity: 0.62;
-  }
-}
 @layer utilities {
-  /* Utility-layer extensions will live here as Oxcil grows. */
+  .bg-oxcil-brand-dot-grid {
+    --brand-dot-grid-color: color-mix(in oklab, var(--oxcil-brand) 20%, transparent);
+    --brand-dot-grid-size: 28px;
+    background-image: radial-gradient(var(--brand-dot-grid-color) 1px, transparent 1px);
+    background-size: var(--brand-dot-grid-size) var(--brand-dot-grid-size);
+  }
+
+  .animate-background-ripple {
+    animation: background-ripple var(--ripple-duration, 300ms)
+      cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-cta-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fade-in-delayed 800ms ease-out 300ms both;
+  }
+
+  .animate-logo-marquee {
+    animation: logo-marquee 28s linear infinite;
+  }
 }

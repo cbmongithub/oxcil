@@ -36,4 +36,3 @@ The current emphasis is on:
 - This repository is a work in progress.
 - Details may change as the project evolves.
 - The private planning notes contain the deeper product direction.
-

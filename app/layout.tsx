@@ -1,40 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import type React from "react";
+import type { ReactNode } from "react";
 
-import { BackgroundRipple } from "@/components/effects/background-ripple";
+import { Navbar } from "@/components/landing/navbar";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+
 import "../styles/oxcil.css";
 
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
-
 export const metadata: Metadata = {
-  title: "Oxcil | AI Workflow Operator Console",
+  title: "Oxcil - AI Lead Infrastructure",
   description:
-    "Oxcil runs business workflows across existing tools with transparent plans, live execution state, approvals, and reusable results.",
+    "AI lead infrastructure for local service businesses, built around focused landing pages, routing logic, and workflow demos.",
+  generator: "Oxcil",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
-        <BackgroundRipple />
-        {children}
-        <Analytics />
+    <html lang="en" suppressHydrationWarning className="bg-background">
+      <body className="bg-background text-foreground relative min-h-screen font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+          {process.env.NODE_ENV === "production" && <Analytics />}
+        </ThemeProvider>
       </body>
     </html>
   );

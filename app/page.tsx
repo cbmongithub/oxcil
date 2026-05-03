@@ -1,34 +1,26 @@
-import { WorkflowShowcase } from "@/components/previews/workflow-showcase";
-import { ProductGrid } from "@/components/sections/product-grid";
-import { Compare } from "@/components/sections/compare";
-import { FAQ } from "@/components/sections/faq";
-import { CTA } from "@/components/sections/cta";
-import { Hero } from "@/components/sections/hero";
-import { HowItWorks } from "@/components/sections/how-it-works";
-import { LogoCloud } from "@/components/sections/logo-cloud";
-import { Pricing } from "@/components/sections/pricing";
-import { AnimatedTerminal } from "@/components/sections/animated-terminal";
-import { Testimonials } from "@/components/sections/testimonials";
-import { Footer } from "@/components/site/footer";
-import { Header } from "@/components/site/header";
+import { CallToAction } from "@/components/landing/call-to-action";
+import { FeaturesGrid } from "@/components/landing/features-grid";
+import { Footer } from "@/components/landing/footer";
+import { Hero } from "@/components/landing/hero";
+import { LogoMarquee } from "@/components/landing/logo-marquee";
+import { Navbar } from "@/components/landing/navbar";
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen">
-      <Header />
-      <main className="relative z-10">
-        <Hero />
-        <LogoCloud />
-        <ProductGrid />
-        <HowItWorks />
-        <WorkflowShowcase />
-        <AnimatedTerminal />
-        <Testimonials />
-        <Compare />
-        <Pricing />
-        <FAQ />
-        <CTA />
-      </main>
+    <div className="bg-background relative min-h-screen overflow-x-hidden">
+      <div className="relative w-full">
+        <Navbar />
+        <main className="relative z-10 w-full">
+          <Hero />
+        </main>
+      </div>
+      <div className="relative z-10">
+        <div className="animate-fade-in-delayed relative z-10 pb-12">
+          <LogoMarquee />
+        </div>
+        <FeaturesGrid />
+        <CallToAction />
+      </div>
       <Footer />
     </div>
   );
