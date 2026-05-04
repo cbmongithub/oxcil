@@ -7,17 +7,15 @@ export const contentType = "image/png";
 
 export default function Icon() {
   return new ImageResponse(
-    (
-      <svg
-        width="32"
-        height="32"
-        viewBox={BRAND_MARK_VIEWBOX}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d={BRAND_MARK_PATHS.outer} fill="var(--foreground)" />
-        <path d={BRAND_MARK_PATHS.inner} fill="var(--background)" />
-      </svg>
-    ),
+    <svg
+      width="32"
+      height="32"
+      viewBox={BRAND_MARK_VIEWBOX}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d={BRAND_MARK_PATHS.outer} fill="var(--foreground)" />
+      <path d={BRAND_MARK_PATHS.inner} fill="var(--background)" />
+    </svg>,
     { ...size }
   );
 }
