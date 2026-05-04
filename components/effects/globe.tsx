@@ -2,9 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-import type { COBEOptions, Globe as COBEGlobe } from "cobe";
-
 import { cn } from "@/lib/utils";
+import type { COBEOptions, Globe as COBEGlobe } from "cobe";
 
 const GLOBE_BASE_CONFIG: COBEOptions = {
   width: 800,
@@ -17,16 +16,16 @@ const GLOBE_BASE_CONFIG: COBEOptions = {
   mapBrightness: 5.5,
   mapBaseBrightness: 0.35,
   markers: [
-    { location: [14.5995, 120.9842], size: 0.03, id: "manila" },
-    { location: [19.076, 72.8777], size: 0.1, id: "mumbai" },
-    { location: [23.8103, 90.4125], size: 0.05, id: "dhaka" },
-    { location: [30.0444, 31.2357], size: 0.07, id: "cairo" },
-    { location: [39.9042, 116.4074], size: 0.08, id: "beijing" },
-    { location: [-23.5505, -46.6333], size: 0.1, id: "sao-paulo" },
-    { location: [19.4326, -99.1332], size: 0.1, id: "mexico-city" },
-    { location: [40.7128, -74.006], size: 0.1, id: "new-york" },
-    { location: [34.6937, 135.5022], size: 0.05, id: "osaka" },
-    { location: [41.0082, 28.9784], size: 0.06, id: "istanbul" },
+    { location: [14.5995, 120.9842], size: 0.03 },
+    { location: [19.076, 72.8777], size: 0.1 },
+    { location: [23.8103, 90.4125], size: 0.05 },
+    { location: [30.0444, 31.2357], size: 0.07 },
+    { location: [39.9042, 116.4074], size: 0.08 },
+    { location: [-23.5505, -46.6333], size: 0.1 },
+    { location: [19.4326, -99.1332], size: 0.1 },
+    { location: [40.7128, -74.006], size: 0.1 },
+    { location: [34.6937, 135.5022], size: 0.05 },
+    { location: [41.0082, 28.9784], size: 0.06 },
   ],
   baseColor: [1, 1, 1] as [number, number, number],
   markerColor: [0.18, 0.42, 0.95] as [number, number, number],
@@ -36,16 +35,16 @@ const GLOBE_BASE_CONFIG: COBEOptions = {
 
 const DARK_THEME_CONFIG = {
   dark: 1,
-  baseColor: [0.12, 0.16, 0.28] as [number, number, number],
-  markerColor: [0.42, 0.61, 1] as [number, number, number],
-  glowColor: [0.2, 0.32, 0.58] as [number, number, number],
+  baseColor: [0.13, 0.24, 0.55] as [number, number, number],
+  markerColor: [0.34, 0.37, 0.87] as [number, number, number],
+  glowColor: [0.13, 0.24, 0.55] as [number, number, number],
 };
 
 const LIGHT_THEME_CONFIG = {
   dark: 0,
-  baseColor: [1, 1, 1] as [number, number, number],
-  markerColor: [0.18, 0.42, 0.95] as [number, number, number],
-  glowColor: [0.9, 0.95, 1] as [number, number, number],
+  baseColor: [0.6, 0.7, 0.9] as [number, number, number],
+  markerColor: [0.13, 0.37, 0.87] as [number, number, number],
+  glowColor: [0.6, 0.7, 0.9] as [number, number, number],
 };
 
 export function Globe({ className }: { className?: string }) {
@@ -155,15 +154,18 @@ export function Globe({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("absolute inset-0 mx-auto aspect-square w-full max-w-150", className)}
+      className={cn(
+        "absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]",
+        className
+      )}
     >
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="border-primary size-8 animate-spin rounded-full border border-t-transparent" />
+          <div className="border-primary size-8 animate-spin rounded-full border-2 border-t-transparent" />
         </div>
       )}
       <canvas
-        className="size-full opacity-0 transition-opacity duration-500 contain-[layout_paint_size]"
+        className="size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]"
         ref={canvasRef}
         onPointerDown={(e) =>
           updatePointerInteraction(e.clientX - pointerInteractionMovement.current)

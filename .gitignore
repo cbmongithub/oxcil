@@ -1,8 +1,9 @@
 # dependencies
 /node_modules
 
-# agent
+# agents
 /agent/
+AGENTS.md
 
 # next.js
 /.next/
@@ -28,6 +29,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# agents
-AGENTS.md

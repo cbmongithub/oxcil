@@ -1,54 +1,55 @@
-"use client";
+"use client"
 
-import { type RefObject, useEffect, useId, useState } from "react";
-import { motion } from "motion/react";
+import type React from "react"
 
-import { cn } from "@/lib/utils";
+import { motion } from "motion/react"
+import { type RefObject, useEffect, useId, useState } from "react"
+import { cn } from "@/lib/utils"
 
-export type AnimatedBeamProps = {
-  className?: string;
-  containerRef: RefObject<HTMLElement | null>;
-  fromRef: RefObject<HTMLElement | null>;
-  toRef: RefObject<HTMLElement | null>;
-  curvature?: number;
-  reverse?: boolean;
-  pathColor?: string;
-  pathWidth?: number;
-  pathOpacity?: number;
-  gradientStartColor?: string;
-  gradientStopColor?: string;
-  delay?: number;
-  duration?: number;
-  startXOffset?: number;
-  startYOffset?: number;
-  endXOffset?: number;
-  endYOffset?: number;
-  direction?: "horizontal" | "vertical";
-};
+export interface AnimatedBeamProps {
+  className?: string
+  containerRef: RefObject<HTMLElement | null>
+  fromRef: RefObject<HTMLElement | null>
+  toRef: RefObject<HTMLElement | null>
+  curvature?: number
+  reverse?: boolean
+  pathColor?: string
+  pathWidth?: number
+  pathOpacity?: number
+  gradientStartColor?: string
+  gradientStopColor?: string
+  delay?: number
+  duration?: number
+  startXOffset?: number
+  startYOffset?: number
+  endXOffset?: number
+  endYOffset?: number
+  direction?: "horizontal" | "vertical"
+}
 
-export function AnimatedBeam({
+export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   className,
   containerRef,
   fromRef,
   toRef,
   curvature = 0,
   reverse = false,
-  duration = 10,
+  duration = Math.random() * 3 + 4,
   delay = 0,
-  pathColor = "var(--border)",
+  pathColor = "gray",
   pathWidth = 2,
-  pathOpacity = 0.18,
-  gradientStartColor = "var(--oxcil-brand)",
-  gradientStopColor = "var(--oxcil-brand-border)",
+  pathOpacity = 0.2,
+  gradientStartColor = "var(--primary)",
+  gradientStopColor = "#6ba3ff",
   startXOffset = 0,
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
   direction = "horizontal",
-}: AnimatedBeamProps) {
-  const id = useId();
-  const [pathD, setPathD] = useState("");
-  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
+}) => {
+  const id = useId()
+  const [pathD, setPathD] = useState("")
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 })
 
   const gradientCoordinates =
     direction === "vertical"
@@ -77,53 +78,44 @@ export function AnimatedBeam({
             x2: ["0%", "100%"],
             y1: ["0%", "0%"],
             y2: ["0%", "0%"],
-          };
+          }
 
   useEffect(() => {
-    function updatePath() {
+    const updatePath = () => {
       if (containerRef.current && fromRef.current && toRef.current) {
-        const containerRect = containerRef.current.getBoundingClientRect();
-        const rectA = fromRef.current.getBoundingClientRect();
-        const rectB = toRef.current.getBoundingClientRect();
+        const containerRect = containerRef.current.getBoundingClientRect()
+        const rectA = fromRef.current.getBoundingClientRect()
+        const rectB = toRef.current.getBoundingClientRect()
 
-        const svgWidth = containerRect.width;
-        const svgHeight = containerRect.height;
-        setSvgDimensions({ width: svgWidth, height: svgHeight });
+        const svgWidth = containerRect.width
+        const svgHeight = containerRect.height
+        setSvgDimensions({ width: svgWidth, height: svgHeight })
 
-        const startX = rectA.left - containerRect.left + rectA.width / 2 + startXOffset;
-        const startY = rectA.top - containerRect.top + rectA.height / 2 + startYOffset;
-        const endX = rectB.left - containerRect.left + rectB.width / 2 + endXOffset;
-        const endY = rectB.top - containerRect.top + rectB.height / 2 + endYOffset;
+        const startX = rectA.left - containerRect.left + rectA.width / 2 + startXOffset
+        const startY = rectA.top - containerRect.top + rectA.height / 2 + startYOffset
+        const endX = rectB.left - containerRect.left + rectB.width / 2 + endXOffset
+        const endY = rectB.top - containerRect.top + rectB.height / 2 + endYOffset
 
-        const controlY = startY - curvature;
-        const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`;
-        setPathD(d);
+        const controlY = startY - curvature
+        const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`
+        setPathD(d)
       }
     }
 
     const resizeObserver = new ResizeObserver(() => {
-      updatePath();
-    });
+      updatePath()
+    })
 
     if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
+      resizeObserver.observe(containerRef.current)
     }
 
-    updatePath();
+    updatePath()
 
     return () => {
-      resizeObserver.disconnect();
-    };
-  }, [
-    containerRef,
-    fromRef,
-    toRef,
-    curvature,
-    startXOffset,
-    startYOffset,
-    endXOffset,
-    endYOffset,
-  ]);
+      resizeObserver.disconnect()
+    }
+  }, [containerRef, fromRef, toRef, curvature, startXOffset, startYOffset, endXOffset, endYOffset])
 
   return (
     <svg
@@ -131,26 +123,11 @@ export function AnimatedBeam({
       width={svgDimensions.width}
       height={svgDimensions.height}
       xmlns="http://www.w3.org/2000/svg"
-      className={cn(
-        "pointer-events-none absolute top-0 left-0 transform-gpu stroke-2",
-        className
-      )}
+      className={cn("pointer-events-none absolute top-0 left-0 transform-gpu stroke-2", className)}
       viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
     >
-      <path
-        d={pathD}
-        stroke={pathColor}
-        strokeWidth={pathWidth}
-        strokeOpacity={pathOpacity}
-        strokeLinecap="round"
-      />
-      <path
-        d={pathD}
-        strokeWidth={pathWidth}
-        stroke={`url(#${id})`}
-        strokeOpacity="1"
-        strokeLinecap="round"
-      />
+      <path d={pathD} stroke={pathColor} strokeWidth={pathWidth} strokeOpacity={pathOpacity} strokeLinecap="round" />
+      <path d={pathD} strokeWidth={pathWidth} stroke={`url(#${id})`} strokeOpacity="1" strokeLinecap="round" />
       <defs>
         <motion.linearGradient
           className="transform-gpu"
@@ -183,5 +160,5 @@ export function AnimatedBeam({
         </motion.linearGradient>
       </defs>
     </svg>
-  );
+  )
 }

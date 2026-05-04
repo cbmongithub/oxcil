@@ -1,87 +1,393 @@
-/* Utilities
-   Small reusable token-backed helpers for shared brand surfaces, decorative backgrounds,
-   and reusable motion keyframes. */
-
-@keyframes background-ripple {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--ripple-cell-border) 14%, transparent)
-      inset;
-    border-color: var(--ripple-cell-border);
-    opacity: 0.26;
-  }
-  24% {
-    transform: scale(1);
-    border-color: color-mix(in oklab, var(--oxcil-brand) 86%, var(--ripple-cell-border));
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--oxcil-brand) 66%, transparent) inset,
-      0 0 34px color-mix(in oklab, var(--oxcil-brand) 26%, transparent);
-    opacity: 0.98;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--ripple-cell-border) 20%, transparent) inset,
-      0 0 12px color-mix(in oklab, var(--oxcil-brand) 14%, transparent);
-    border-color: color-mix(in oklab, var(--ripple-cell-border) 52%, transparent);
-    opacity: 0.28;
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translate3d(0, -8px, 0) scale(1.08);
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-delayed {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes logo-marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
 @layer utilities {
-  .bg-oxcil-brand-dot-grid {
-    --brand-dot-grid-color: color-mix(in oklab, var(--oxcil-brand) 20%, transparent);
-    --brand-dot-grid-size: 28px;
-    background-image: radial-gradient(var(--brand-dot-grid-color) 1px, transparent 1px);
-    background-size: var(--brand-dot-grid-size) var(--brand-dot-grid-size);
+  /* Meteor animation - starts invisible, fades in, then fades out as it falls */
+  @keyframes meteor-effect {
+    0% {
+      transform: rotate(-35deg) translateY(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(-35deg) translateY(800px);
+      opacity: 0;
+    }
   }
 
-  .animate-background-ripple {
-    animation: background-ripple var(--ripple-duration, 300ms)
-      cubic-bezier(0.16, 1, 0.3, 1) both;
+  .animate-meteor-effect {
+    animation: meteor-effect linear infinite;
   }
 
-  .animate-cta-float {
-    animation: float 4s ease-in-out infinite;
+  /* Logo marquee infinite scroll animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  /* Navbar drop-in animation from -y */
+  @keyframes navbar-drop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-navbar-drop {
+    animation: navbar-drop 0.8s ease-out forwards;
+  }
+
+  /* Hero h1 slide in from right animation */
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+  }
+
+  /* Hero h1 bottom row slide up animation */
+  @keyframes slide-up {
+    0% {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up-delayed {
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.3s forwards;
+  }
+
+  /* Added paragraph and buttons slide up animations with staggered delays */
+  .animate-slide-up-delayed-2 {
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.5s forwards;
+  }
+
+  .animate-slide-up-delayed-3 {
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.7s forwards;
+  }
+
+  /* Trusted by section fade-in animation with delay after main hero */
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   .animate-fade-in-delayed {
-    animation: fade-in-delayed 800ms ease-out 300ms both;
+    opacity: 0;
+    animation: fade-in 1s ease-out 1s forwards;
   }
 
-  .animate-logo-marquee {
-    animation: logo-marquee 28s linear infinite;
+  /* Added slide-up animations for section header */
+  .animate-slide-up-section {
+    opacity: 0;
+    animation: slide-up 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up-section-delayed {
+    opacity: 0;
+    animation: slide-up 0.8s ease-out 0.2s forwards;
+  }
+
+  /* Added slide-in-left animation for top row */
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-left {
+    opacity: 0;
+    animation: slide-in-left 0.8s ease-out forwards;
+  }
+
+  /* Added slide-in-right delayed for bottom row */
+  .animate-slide-in-right-delayed {
+    opacity: 0;
+    animation: slide-in-right 0.8s ease-out 0.3s forwards;
+  }
+
+  /* Added staggered animations for desktop row cards with 0.2s delays */
+  .animate-slide-in-left-1 {
+    opacity: 0;
+    animation: slide-in-left 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-left-2 {
+    opacity: 0;
+    animation: slide-in-left 0.8s ease-out 0.2s forwards;
+  }
+
+  .animate-slide-in-left-3 {
+    opacity: 0;
+    animation: slide-in-left 0.8s ease-out 0.4s forwards;
+  }
+
+  .animate-slide-in-right-1 {
+    opacity: 0;
+    animation: slide-in-right 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right-2 {
+    opacity: 0;
+    animation: slide-in-right 0.8s ease-out 0.2s forwards;
+  }
+
+  .animate-slide-in-right-3 {
+    opacity: 0;
+    animation: slide-in-right 0.8s ease-out 0.4s forwards;
+  }
+
+  /* Added staggered slide-in-right animations for mobile cards */
+  .animate-slide-in-right-mobile-1 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right-mobile-2 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out 0.15s forwards;
+  }
+
+  .animate-slide-in-right-mobile-3 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out 0.3s forwards;
+  }
+
+  .animate-slide-in-right-mobile-4 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out 0.45s forwards;
+  }
+
+  .animate-slide-in-right-mobile-5 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out 0.6s forwards;
+  }
+
+  .animate-slide-in-right-mobile-6 {
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out 0.75s forwards;
+  }
+
+  /* Added vertical scroll animations for testimonials */
+  @keyframes scroll-up {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-scroll-up {
+    animation: scroll-up linear infinite;
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down linear infinite;
+  }
+
+  /* Nav link hover underline effect - line slides in from left to right */
+  .nav-link-hover {
+    position: relative;
+  }
+
+  .nav-link-hover::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(270deg, var(--primary) 0%, transparent 100%);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .nav-link-hover:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* Added 404 page animations */
+
+  /* Floating orb animations */
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+  }
+
+  @keyframes float-slower {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-40px, 20px) scale(1.05);
+    }
+  }
+
+  @keyframes float-medium {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(20px, -20px);
+    }
+    66% {
+      transform: translate(-15px, 10px);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 12s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float-medium 6s ease-in-out infinite;
+  }
+
+  /* 404 number animations */
+  @keyframes spin-slow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-404-spin {
+    display: inline-block;
+    animation: spin-slow 20s linear infinite;
+  }
+
+  /* Orbiting dot around the 0 */
+  @keyframes orbit {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(60px) rotate(-360deg);
+    }
+  }
+
+  .animate-orbit {
+    animation: orbit 3s linear infinite;
+  }
+
+  /* Glitch effect layers */
+  @keyframes glitch-1 {
+    0%,
+    90%,
+    100% {
+      opacity: 0;
+      transform: translate(0);
+    }
+    92% {
+      opacity: 0.8;
+      transform: translate(-5px, 2px);
+    }
+    94% {
+      opacity: 0;
+    }
+    96% {
+      opacity: 0.5;
+      transform: translate(5px, -2px);
+    }
+    98% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes glitch-2 {
+    0%,
+    88%,
+    100% {
+      opacity: 0;
+      transform: translate(0);
+    }
+    90% {
+      opacity: 0.6;
+      transform: translate(3px, -3px);
+    }
+    93% {
+      opacity: 0;
+    }
+    95% {
+      opacity: 0.4;
+      transform: translate(-3px, 3px);
+    }
+    97% {
+      opacity: 0;
+    }
+  }
+
+  .animate-glitch-1 {
+    animation: glitch-1 5s ease-in-out infinite;
+  }
+
+  .animate-glitch-2 {
+    animation: glitch-2 5s ease-in-out infinite 0.5s;
   }
 }
