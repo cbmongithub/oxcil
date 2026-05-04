@@ -1,13 +1,14 @@
 "use client";
 
-import type React from "react";
-
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useLenis } from "./lenis-provider";
+import type React from "react";
+
 import { Logo } from "@/components/logo";
+
+import { useLenis } from "./lenis-provider";
 
 const navLinks = [
   { label: "Platform", href: "/#platform" },

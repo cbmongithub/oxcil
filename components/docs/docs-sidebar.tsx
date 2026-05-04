@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
+import { Book, Code, Shield, Zap } from "lucide-react";
+import type React from "react";
 
-import { Book, Code, Zap, Shield } from "lucide-react"
-import type { DocsSectionId } from "@/lib/docs-content"
+import type { DocsSectionId } from "@/lib/docs-content";
 
 interface SidebarItem {
-  title: string
-  href: string
-  id: DocsSectionId
+  title: string;
+  href: string;
+  id: DocsSectionId;
 }
 
 interface SidebarSection {
-  title: string
-  icon: React.ComponentType<{ className?: string }>
-  items: SidebarItem[]
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  items: SidebarItem[];
 }
 
 export const sidebarItems: SidebarSection[] = [
@@ -53,24 +53,24 @@ export const sidebarItems: SidebarSection[] = [
       { title: "Rate Limits", href: "#rate-limits", id: "rate-limits" },
     ],
   },
-]
+];
 
 interface DocsSidebarProps {
-  activeSection: DocsSectionId
-  onSectionChange: (section: DocsSectionId) => void
+  activeSection: DocsSectionId;
+  onSectionChange: (section: DocsSectionId) => void;
 }
 
 export function DocsSidebar({ activeSection, onSectionChange }: DocsSidebarProps) {
   return (
-    <aside className="hidden lg:block fixed left-0 top-16 bottom-0 w-64 border-r border-white/10 overflow-y-auto p-6">
+    <aside className="fixed top-16 bottom-0 left-0 hidden w-64 overflow-y-auto border-r border-white/10 p-6 lg:block">
       <nav className="space-y-6">
         {sidebarItems.map((section) => (
           <div key={section.title}>
-            <div className="flex items-center gap-2 text-sm font-semibold text-foreground mb-3">
-              <section.icon className="w-4 h-4 text-primary" />
+            <div className="text-foreground mb-3 flex items-center gap-2 text-sm font-semibold">
+              <section.icon className="text-primary h-4 w-4" />
               {section.title}
             </div>
-            <ul className="space-y-1 ml-6">
+            <ul className="ml-6 space-y-1">
               {section.items.map((item) => (
                 <li key={item.href}>
                   <a
@@ -91,5 +91,5 @@ export function DocsSidebar({ activeSection, onSectionChange }: DocsSidebarProps
         ))}
       </nav>
     </aside>
-  )
+  );
 }

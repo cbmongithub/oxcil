@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Zap, Database, Key } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { DocsHeader } from "@/components/docs/docs-header";
-import { DocsSidebar } from "@/components/docs/docs-sidebar";
+import { ChevronRight, Database, Key, Zap } from "lucide-react";
+
 import { CodeBlock } from "@/components/docs/code-block";
 import { CopyPageButton } from "@/components/docs/copy-page-button";
+import { DocsHeader } from "@/components/docs/docs-header";
+import { DocsSidebar } from "@/components/docs/docs-sidebar";
+import { Button } from "@/components/ui/button";
+
 import type { DocsSectionId } from "@/lib/docs-content";
 
 export default function DocsPage() {

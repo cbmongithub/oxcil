@@ -1,10 +1,12 @@
-import type React from "react";
 import type { Metadata } from "next";
-import { Work_Sans, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Work_Sans } from "next/font/google";
+import type React from "react";
+
 // import { Analytics } from "@vercel/analytics/next"
 // import { SpeedInsights } from "@vercel/speed-insights/next"
 import { LenisProvider } from "@/components/lenis-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+
 import "../styles/oxcil.css";
 
 const workSans = Work_Sans({ subsets: ["latin"], variable: "--font-work-sans" });
@@ -17,15 +19,6 @@ export const metadata: Metadata = {
   title: "Oxcil - AI Lead Infrastructure",
   description:
     "AI lead infrastructure for local service businesses, built around focused landing pages, routing logic, and workflow demos.",
-  icons: {
-    icon: [
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.jpg",
-  },
 };
 
 export default function RootLayout({

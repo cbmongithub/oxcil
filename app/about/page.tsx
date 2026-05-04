@@ -1,23 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { Navbar } from "@/components/navbar";
+import Link from "next/link";
+import { ArrowRight, Sparkles, Target, Users, Zap } from "lucide-react";
+
 import { Footer } from "@/components/footer";
 import { GridBackground } from "@/components/grid-background";
+import { GitHubIcon, LinkedInIcon, TwitterIcon } from "@/components/icons";
+import { Navbar } from "@/components/navbar";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { Button } from "@/components/ui/button";
-import {
-  Twitter,
-  Linkedin,
-  Github,
-  ArrowRight,
-  Sparkles,
-  Target,
-  Users,
-  Zap,
-} from "lucide-react";
 
 const teamMembers = [
   {
@@ -120,7 +113,7 @@ const stats = [
   { value: "< 50ms", label: "Average Latency" },
 ];
 
-function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: number }) {
+function TeamCard({ member }: { member: (typeof teamMembers)[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -129,9 +122,7 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card container */}
       <div className="bg-card border-border hover:border-primary/50 relative overflow-hidden rounded-2xl border transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(34,94,223,0.3)]">
-        {/* Image container */}
         <div className="relative aspect-[3/4] overflow-hidden md:aspect-[4/5]">
           <Image
             src={member.image || "/placeholder.svg"}
@@ -140,25 +131,17 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
             loading="lazy"
             className="object-cover object-top grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
           />
-
-          {/* Gradient overlay */}
           <div className="from-card via-card/40 absolute inset-0 bg-gradient-to-t to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
         </div>
 
-        {/* Content */}
         <div className="absolute right-0 bottom-0 left-0 p-4 md:p-6">
-          {/* Role badge */}
           <div className="bg-primary/10 border-primary/20 mb-2 inline-flex items-center gap-1.5 rounded-full border px-3 py-1">
             <span className="bg-primary h-1.5 w-1.5 animate-pulse rounded-full" />
             <span className="text-primary text-xs font-medium">{member.role}</span>
           </div>
-
-          {/* Name */}
           <h3 className="text-foreground mb-1 text-lg font-semibold md:text-xl">
             {member.name}
           </h3>
-
-          {/* Bio - slides up on hover */}
           <p
             className={`text-muted-foreground text-sm transition-all duration-500 ${
               isHovered
@@ -168,8 +151,6 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
           >
             {member.bio}
           </p>
-
-          {/* Social links - slide up on hover */}
           <div
             className={`mt-3 flex items-center gap-2 transition-all delay-100 duration-500 ${
               isHovered
@@ -185,7 +166,7 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
                 className="bg-background/50 border-border text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 rounded-lg border p-2 transition-all"
                 aria-label={`${member.name} on Twitter`}
               >
-                <Twitter className="h-4 w-4" />
+                <TwitterIcon />
               </Link>
             )}
             {member.social.linkedin && (
@@ -196,7 +177,7 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
                 className="bg-background/50 border-border text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 rounded-lg border p-2 transition-all"
                 aria-label={`${member.name} on LinkedIn`}
               >
-                <Linkedin className="h-4 w-4" />
+                <LinkedInIcon />
               </Link>
             )}
             {member.social.github && (
@@ -207,13 +188,12 @@ function TeamCard({ member, index }: { member: (typeof teamMembers)[0]; index: n
                 className="bg-background/50 border-border text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 rounded-lg border p-2 transition-all"
                 aria-label={`${member.name} on GitHub`}
               >
-                <Github className="h-4 w-4" />
+                <GitHubIcon />
               </Link>
             )}
           </div>
         </div>
 
-        {/* Corner accent */}
         <div className="absolute top-4 right-4 h-8 w-8 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
           <div className="from-primary absolute top-0 right-0 h-[2px] w-full bg-gradient-to-l to-transparent" />
           <div className="from-primary absolute top-0 right-0 h-full w-[2px] bg-gradient-to-b to-transparent" />
@@ -229,8 +209,6 @@ export default function AboutPage() {
       <ScrollToTop />
       <GridBackground />
       <Navbar />
-
-      {/* Custom hero gradient */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[600px] overflow-hidden"
         style={{
@@ -238,29 +216,23 @@ export default function AboutPage() {
             "radial-gradient(circle 800px at 50% -200px, rgba(34, 94, 223, 0.15), transparent 70%)",
         }}
       />
-
       <main className="relative z-10 pt-32 pb-20">
-        {/* Hero section */}
         <section className="container mx-auto mb-32 px-6 text-center md:mb-24">
           <div className="bg-primary/10 border-primary/20 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2">
             <Sparkles className="text-primary h-4 w-4" />
             <span className="text-primary text-sm font-medium">About Oxcil</span>
           </div>
-
           <h1 className="text-foreground mx-auto mb-6 max-w-4xl text-4xl font-bold text-balance md:text-5xl lg:text-6xl">
             Building the future of <span className="text-primary">AI infrastructure</span>
           </h1>
-
           <p className="text-muted-foreground mx-auto mb-10 max-w-2xl text-lg">
-            We're a team of engineers, researchers, and builders on a mission to make AI
-            inference fast, reliable, and accessible to everyone.
+            We&apos;re a team of engineers, researchers, and builders on a mission to make
+            AI inference fast, reliable, and accessible to everyone.
           </p>
-
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
               <Link href="/contact">
-                Get in Touch
-                <ArrowRight className="ml-2 h-4 w-4" />
+                Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
@@ -269,7 +241,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Stats section */}
         <section className="container mx-auto mb-24 px-6">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
             {stats.map((stat, index) => (
@@ -286,13 +257,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Mission section */}
         <section className="container mx-auto mb-24 px-6">
           <div className="mx-auto max-w-4xl">
             <div className="bg-card/50 border-border relative overflow-hidden rounded-2xl border p-8 md:p-12">
-              {/* Decorative gradient */}
               <div className="bg-primary/5 absolute top-0 right-0 h-64 w-64 rounded-full blur-3xl" />
-
               <div className="relative">
                 <h2 className="text-foreground mb-6 text-2xl font-bold md:text-3xl">
                   Our Mission
@@ -300,12 +268,12 @@ export default function AboutPage() {
                 <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
                   We founded Oxcil with a simple belief: AI should be accessible to every
                   developer and every company, regardless of scale. The infrastructure
-                  that powers AI shouldn't be a bottleneck—it should be an enabler.
+                  that powers AI shouldn&apos;t be a bottleneck—it should be an enabler.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Today, we're building the most reliable, fastest, and most
-                  cost-effective AI inference platform in the world. We're not just
-                  building technology—we're building the foundation for the next
+                  Today, we&apos;re building the most reliable, fastest, and most
+                  cost-effective AI inference platform in the world. We&apos;re not just
+                  building technology—we&apos;re building the foundation for the next
                   generation of AI-powered applications.
                 </p>
               </div>
@@ -313,7 +281,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Values section */}
         <section className="container mx-auto mb-24 px-6">
           <div className="mb-12 text-center">
             <h2 className="text-foreground mb-4 text-3xl font-bold md:text-4xl">
@@ -323,7 +290,6 @@ export default function AboutPage() {
               The principles that guide everything we do
             </p>
           </div>
-
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => (
               <div
@@ -342,7 +308,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team section */}
         <section id="team" className="container mx-auto mb-24 px-6">
           <div className="mb-12 text-center">
             <h2 className="text-foreground mb-4 text-3xl font-bold md:text-4xl">
@@ -352,7 +317,6 @@ export default function AboutPage() {
               World-class talent from the best AI and infrastructure companies
             </p>
           </div>
-
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member, index) => (
               <TeamCard key={member.name} member={member} index={index} />
@@ -360,30 +324,26 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA section */}
         <section className="container mx-auto px-6">
           <div className="from-primary/10 to-primary/5 border-primary/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-8 text-center md:p-12">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(34,94,223,0.1),transparent_50%)]" />
-
             <div className="relative">
               <h2 className="text-foreground mb-4 text-2xl font-bold md:text-3xl">
                 Join Our Team
               </h2>
               <p className="text-muted-foreground mx-auto mb-8 max-w-xl">
-                We're always looking for talented people who share our passion for
+                We&apos;re always looking for talented people who share our passion for
                 building exceptional AI infrastructure. Check out our open positions.
               </p>
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                 <Link href="#">
-                  View Open Positions
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  View Open Positions <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

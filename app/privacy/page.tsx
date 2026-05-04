@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Navbar } from "@/components/navbar";
+
 import { Footer } from "@/components/footer";
 import { GridBackground } from "@/components/grid-background";
+import { Navbar } from "@/components/navbar";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 const sections = [

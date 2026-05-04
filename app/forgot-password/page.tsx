@@ -1,14 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, CheckCircle2, KeyRound, Mail } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import type React from "react";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { GridBackground } from "@/components/grid-background";
-import { ArrowLeft, Mail, CheckCircle2, KeyRound } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setIsLoading(true);
     // Simulate API call
@@ -132,8 +132,7 @@ export default function ForgotPasswordPage() {
                     href="/login"
                     className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-2 text-sm transition-colors"
                   >
-                    <ArrowLeft className="h-4 w-4" />
-                    Back to sign in
+                    <ArrowLeft className="h-4 w-4" /> Back to sign in
                   </Link>
 
                   <div className="mb-8">
@@ -141,8 +140,8 @@ export default function ForgotPasswordPage() {
                       Reset your password
                     </h1>
                     <p className="text-muted-foreground mt-2 text-sm">
-                      Enter your email address and we'll send you a link to reset your
-                      password.
+                      Enter your email address and we&apos;ll send you a link to reset
+                      your password.
                     </p>
                   </div>
 
@@ -219,18 +218,17 @@ export default function ForgotPasswordPage() {
                       <CheckCircle2 className="text-primary h-8 w-8" />
                     </motion.div>
                   </div>
-
                   <h1 className="text-foreground mb-2 text-2xl font-semibold">
                     Check your email
                   </h1>
                   <p className="text-muted-foreground mb-6 text-sm">
-                    We've sent a password reset link to{" "}
+                    We&apos;ve sent a password reset link to{" "}
                     <span className="text-foreground font-medium">{email}</span>
                   </p>
 
                   <div className="mb-6 rounded-lg border border-white/10 bg-white/5 p-4">
                     <p className="text-muted-foreground text-sm">
-                      Didn't receive the email? Check your spam folder or{" "}
+                      Didn&apos;t receive the email? Check your spam folder or{" "}
                       <button
                         onClick={() => setIsSubmitted(false)}
                         className="text-primary hover:underline"
@@ -245,8 +243,7 @@ export default function ForgotPasswordPage() {
                       variant="outline"
                       className="w-full border-white/10 bg-transparent hover:bg-white/5"
                     >
-                      <ArrowLeft className="mr-2 h-4 w-4" />
-                      Back to sign in
+                      <ArrowLeft className="mr-2 h-4 w-4" /> Back to sign in
                     </Button>
                   </Link>
                 </motion.div>

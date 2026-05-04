@@ -1,13 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 import type React from "react";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { GridBackground } from "@/components/grid-background";
-import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -48,8 +48,8 @@ export default function SignUpPage() {
         {/* Testimonial / Value prop */}
         <div className="max-w-md">
           <blockquote className="text-foreground text-2xl leading-relaxed font-medium">
-            "Oxcil reduced our inference costs by 60% while improving latency. It's been a
-            game-changer for our AI products."
+            &ldquo;Oxcil reduced our inference costs by 60% while improving latency.
+            It&apos;s been a game-changer for our AI products.&rdquo;
           </blockquote>
           <div className="mt-6 flex items-center gap-4">
             <div className="bg-primary/20 flex h-12 w-12 items-center justify-center rounded-full">
@@ -162,7 +162,6 @@ export default function SignUpPage() {
                   className="text-foreground placeholder:text-muted-foreground focus:ring-primary/50 focus:border-primary w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
-
               <div>
                 <label
                   htmlFor="email"
@@ -180,7 +179,6 @@ export default function SignUpPage() {
                   className="text-foreground placeholder:text-muted-foreground focus:ring-primary/50 focus:border-primary w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
-
               <div>
                 <label
                   htmlFor="password"
@@ -212,7 +210,6 @@ export default function SignUpPage() {
                   </button>
                 </div>
               </div>
-
               <Button
                 type="submit"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground mt-2 w-full py-2.5"

@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
 import type { COBEOptions, Globe as COBEGlobe } from "cobe";
+
+import { cn } from "@/lib/utils";
 
 const GLOBE_BASE_CONFIG: COBEOptions = {
   width: 800,

@@ -1,9 +1,12 @@
-import { Navbar } from "@/components/navbar";
+import { AlertCircle, ArrowRight, Check, Copy, Info, Zap } from "lucide-react";
+
 import { Footer } from "@/components/footer";
 import { GridBackground } from "@/components/grid-background";
+import { GitHubIcon, TwitterIcon } from "@/components/icons";
+import { Navbar } from "@/components/navbar";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,12 +14,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -24,16 +24,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  AlertCircle,
-  Check,
-  Copy,
-  Info,
-  Zap,
-  ArrowRight,
-  Github,
-  Twitter,
-} from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+
 import { SyntaxHighlighter } from "@/lib/syntax-highlighter";
 
 export default function StyleGuidePage() {
@@ -338,7 +332,7 @@ const response = await client.chat({
                       </h3>
                       <div className="flex flex-wrap gap-4">
                         <Button>
-                          <Github className="mr-2 h-4 w-4" />
+                          <GitHubIcon />
                           GitHub
                         </Button>
                         <Button variant="outline">
@@ -649,7 +643,7 @@ const response = await client.chat({
                       </Button>
                     </div>
                     <div className="p-4">
-                      <SyntaxHighlighter code={codeExample} language="typescript" />
+                      <SyntaxHighlighter code={codeExample} />
                     </div>
                   </div>
                 </CardContent>
@@ -751,8 +745,8 @@ const response = await client.chat({
                       { icon: Info, name: "Info" },
                       { icon: AlertCircle, name: "AlertCircle" },
                       { icon: ArrowRight, name: "ArrowRight" },
-                      { icon: Github, name: "Github" },
-                      { icon: Twitter, name: "Twitter" },
+                      { icon: GitHubIcon, name: "Github" },
+                      { icon: TwitterIcon, name: "Twitter" },
                     ].map(({ icon: Icon, name }) => (
                       <div
                         key={name}

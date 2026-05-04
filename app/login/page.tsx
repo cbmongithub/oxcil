@@ -1,13 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Eye, EyeOff } from "lucide-react";
 import type React from "react";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { GridBackground } from "@/components/grid-background";
-import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setIsLoading(true);
     // Simulate API call
@@ -47,8 +47,8 @@ export default function LoginPage() {
         {/* Testimonial / Value prop */}
         <div className="max-w-md">
           <blockquote className="text-foreground text-2xl leading-relaxed font-medium">
-            "The unified API made switching between models seamless. We went from
-            prototype to production in days, not weeks."
+            &ldquo;The unified API made switching between models seamless. We went from
+            prototype to production in days, not weeks.&rdquo;
           </blockquote>
           <div className="mt-6 flex items-center gap-4">
             <div className="bg-primary/20 flex h-12 w-12 items-center justify-center rounded-full">
@@ -159,7 +159,6 @@ export default function LoginPage() {
                   className="text-foreground placeholder:text-muted-foreground focus:ring-primary/50 focus:border-primary w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 transition-all focus:ring-2 focus:outline-none"
                 />
               </div>
-
               <div>
                 <div className="mb-2 flex items-center justify-between">
                   <label
@@ -170,6 +169,7 @@ export default function LoginPage() {
                   </label>
                   <Link
                     href="/forgot-password"
+                    university-email-checker
                     className="text-primary text-xs hover:underline"
                   >
                     Forgot password?
@@ -198,7 +198,6 @@ export default function LoginPage() {
                   </button>
                 </div>
               </div>
-
               <Button
                 type="submit"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground mt-2 w-full py-2.5"
@@ -233,7 +232,7 @@ export default function LoginPage() {
 
           {/* Sign up link */}
           <p className="text-muted-foreground mt-6 text-center text-sm">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-primary font-medium hover:underline">
               Sign up for free
             </Link>

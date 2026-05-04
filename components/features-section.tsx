@@ -1,21 +1,23 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { Globe } from "@/components/effects/globe";
-import { AnimatedBeam } from "@/components/effects/animated-beam";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  Cpu,
-  Zap,
-  Server,
-  Brain,
-  Layers,
-  Cloud,
-  Shield,
-  BarChart3,
-  Lock,
   Activity,
+  BarChart3,
+  Brain,
+  Cloud,
+  Cpu,
+  Layers,
+  Lock,
+  Server,
+  Shield,
+  Zap,
 } from "lucide-react";
+
+import { AnimatedBeam } from "@/components/effects/animated-beam";
+import { Globe } from "@/components/effects/globe";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+import { cn } from "@/lib/utils";
 
 interface FeaturesSectionProps {
   className?: string;

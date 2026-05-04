@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -86,14 +87,18 @@ const testimonials = [
   },
 ];
 
-function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0] }) {
+// Define the type once
+type Testimonial = (typeof testimonials)[0];
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <figure className="bg-surface-testimonial border-primary/10 mb-4 rounded-xl border p-6">
       <blockquote className="text-muted-foreground text-sm leading-relaxed">
-        <p>{`"${testimonial.body}"`}</p>
+        {/* Fixed: Use &quot; instead of raw quotes inside template literals to avoid lint errors */}
+        <p>&quot;{testimonial.body}&quot;</p>
       </blockquote>
       <figcaption className="mt-4 flex items-center gap-x-3">
-        <img
+        <Image
           alt=""
           src={testimonial.author.imageUrl || "/placeholder.svg"}
           width={40}
@@ -119,7 +124,7 @@ function ScrollingColumn({
   direction = "up",
   duration = 25,
 }: {
-  testimonials: (typeof testimonials)[0][];
+  testimonials: Testimonial[];
   direction?: "up" | "down";
   duration?: number;
 }) {
@@ -127,12 +132,9 @@ function ScrollingColumn({
     <div className="relative h-[600px] overflow-hidden">
       <div className="from-surface-dark pointer-events-none absolute top-0 right-0 left-0 z-10 h-32 bg-gradient-to-b to-transparent" />
       <div className="from-surface-dark pointer-events-none absolute right-0 bottom-0 left-0 z-10 h-32 bg-gradient-to-t to-transparent" />
-
       <div
         className={`flex flex-col ${direction === "up" ? "animate-scroll-up" : "animate-scroll-down"}`}
-        style={{
-          animationDuration: `${duration}s`,
-        }}
+        style={{ animationDuration: `${duration}s` }}
       >
         {[...testimonials, ...testimonials].map((testimonial, idx) => (
           <TestimonialCard

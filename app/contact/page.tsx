@@ -1,21 +1,21 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Building2,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Globe,
+  Users,
+  Video,
+} from "lucide-react";
 import type React from "react";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { GridBackground } from "@/components/grid-background";
-import {
-  Calendar,
-  Clock,
-  Video,
-  CheckCircle2,
-  Building2,
-  Users,
-  Globe,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const timeSlots = [
   "9:00 AM",

@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { blogPosts } from "@/lib/blog-data";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+import { blogPosts } from "@/lib/blog-data";
 
 export function FeaturedBlogsSection() {
   const [isVisible, setIsVisible] = useState(false);

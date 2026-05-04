@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { Navbar } from "@/components/navbar";
+import Link from "next/link";
+import { Calendar, Clock } from "lucide-react";
+
 import { Footer } from "@/components/footer";
 import { GridBackground } from "@/components/grid-background";
+import { Navbar } from "@/components/navbar";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock } from "lucide-react";
+
 import { blogPosts, categories, getFeaturedPost } from "@/lib/blog-data";
 
 export default function BlogPage() {
@@ -185,7 +187,7 @@ export default function BlogPage() {
                 </Card>
               </Link>
             ))}
-            {filteredPosts.slice(1).map((post, index) => (
+            {filteredPosts.slice(1).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
                 <Card className="bg-surface-elevated border-border hover:border-primary/30 h-full overflow-hidden transition-colors">
                   <div className="relative aspect-[16/9] overflow-hidden">

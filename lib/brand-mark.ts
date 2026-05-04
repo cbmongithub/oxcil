@@ -14,3 +14,7 @@ export const BRAND_MARK_PATHS = {
 } as const;
 
 export const BRAND_MARK_VIEWBOX = "129.974 280.016 80 80" as const;
+
+export const BRAND_MARK_BACKGROUND_HEX = "#040405";
+
+export const BRAND_MARK_FOREGROUND_HEX = "#f1f2f3";

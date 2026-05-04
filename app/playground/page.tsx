@@ -1,14 +1,26 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import {
+  Check,
+  ChevronDown,
+  Clock,
+  Code,
+  Copy,
+  MessageSquare,
+  Play,
+  RotateCcw,
+  Settings2,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import type React from "react";
 
-import { useState, useRef, useEffect } from "react";
-import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -16,20 +28,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+
 import { SyntaxHighlighter } from "@/lib/syntax-highlighter";
-import {
-  Play,
-  Copy,
-  Check,
-  Settings2,
-  Sparkles,
-  Clock,
-  Zap,
-  RotateCcw,
-  ChevronDown,
-  Code,
-  MessageSquare,
-} from "lucide-react";
 
 interface Message {
   role: "user" | "assistant" | "system";
