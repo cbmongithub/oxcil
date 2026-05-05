@@ -1,3 +1,20 @@
 @layer components {
-  /* Intentionally left minimal for the first pass of the design system. */
+  /* ============================================================
+     COMPONENT LAYER
+     What belongs here:
+     - Multi-property component abstractions that would be
+       verbose to repeat with utilities (e.g. .btn-base, .card-base)
+     - Shared structural patterns used across 3+ components
+     - Any @apply composition that references multiple design tokens
+
+     What does NOT belong here:
+     - One-off page styles (put those in the component file)
+     - Animation keyframes (put those in utilities.css)
+     - Raw primitive overrides (put those in base.css)
+     - Tailwind utility aliases (prefer inline utilities in JSX)
+
+     Keep this layer lean. Prefer Tailwind utility classes in
+     component markup (JSX/TSX) over abstracting into CSS classes
+     unless the pattern repeats across many unrelated components.
+  ============================================================ */
 }

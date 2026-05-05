@@ -6,7 +6,7 @@ import type React from "react";
 
 import { cn } from "@/lib/utils";
 
-export interface AnimatedBeamProps {
+export interface BeamProps {
   className?: string;
   containerRef: RefObject<HTMLElement | null>;
   fromRef: RefObject<HTMLElement | null>;
@@ -27,7 +27,7 @@ export interface AnimatedBeamProps {
   direction?: "horizontal" | "vertical";
 }
 
-export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
+export const Beam: React.FC<BeamProps> = ({
   className,
   containerRef,
   fromRef,

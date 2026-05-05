@@ -169,7 +169,6 @@ export default function LoginPage() {
                   </label>
                   <Link
                     href="/forgot-password"
-                    university-email-checker
                     className="text-primary text-xs hover:underline"
                   >
                     Forgot password?

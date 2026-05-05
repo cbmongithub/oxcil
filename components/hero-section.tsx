@@ -1,18 +1,15 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Meteors } from "@/components/ui/meteors";
 
-import { GridBackground } from "./grid-background";
+import { Ripple } from "./effects/ripple";
 import { LogoMarquee } from "./logo-marquee";
 
 export function HeroSection() {
   return (
-    <section className="bg-background relative flex min-h-[100dvh] flex-col overflow-hidden">
-      {/* Background effects */}
-      <GridBackground />
-      <Meteors number={10} />
-
+    <section className="bg-background relative flex min-h-dvh flex-col overflow-hidden">
+      {/* Background effect */}
+      <Ripple />
       {/* Hero content */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-24 pb-16">
         <div className="mx-auto max-w-4xl text-center">

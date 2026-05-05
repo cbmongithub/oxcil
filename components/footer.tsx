@@ -5,8 +5,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type React from "react";
 
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { GitHubIcon, LinkedInIcon, TwitterIcon } from "@/components/icons";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+
 import { Logo } from "./logo";
 
 const footerLinks = {
