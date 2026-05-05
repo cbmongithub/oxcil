@@ -4,19 +4,74 @@
   }
 
   html {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  ::-moz-selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Scrollbar (WebKit) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(54.8% 0.222 262 / 0.4); /* fallback */
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(54.8% 0.222 262 / 0.6);
+  }
+
+  /* Modern relative color support */
+  @supports (color: oklch(from white l c h / 0.5)) {
+    ::-webkit-scrollbar-thumb {
+      background: oklch(from var(--primary) l c h / 0.4);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: oklch(from var(--primary) l c h / 0.6);
+    }
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(54.8% 0.222 262 / 0.4) var(--scrollbar-track);
+  }
+
+  @supports (color: oklch(from white l c h / 0.5)) {
+    * {
+      scrollbar-color: oklch(from var(--primary) l c h / 0.4) var(--scrollbar-track);
+    }
+  }
+
+  /* Better focus visibility */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+
+  /* Smooth scroll (optional, but nice for marketing pages) */
+  html {
     scroll-behavior: smooth;
-  }
-
-  html,
-  body {
-    @apply overflow-x-hidden;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  [id] {
-    scroll-margin-top: 6rem;
   }
 }

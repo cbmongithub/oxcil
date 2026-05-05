@@ -2,10 +2,11 @@
 
 import { type RefObject, useEffect, useId, useState } from "react";
 import { motion } from "motion/react";
+import type React from "react";
 
 import { cn } from "@/lib/utils";
 
-export type AnimatedBeamProps = {
+export interface AnimatedBeamProps {
   className?: string;
   containerRef: RefObject<HTMLElement | null>;
   fromRef: RefObject<HTMLElement | null>;
@@ -24,32 +25,31 @@ export type AnimatedBeamProps = {
   endXOffset?: number;
   endYOffset?: number;
   direction?: "horizontal" | "vertical";
-};
+}
 
-export function AnimatedBeam({
+export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   className,
   containerRef,
   fromRef,
   toRef,
   curvature = 0,
   reverse = false,
-  duration = 10,
+  duration,
   delay = 0,
-  pathColor = "var(--border)",
+  pathColor = "gray",
   pathWidth = 2,
-  pathOpacity = 0.18,
-  gradientStartColor = "var(--oxcil-brand)",
-  gradientStopColor = "var(--oxcil-brand-border)",
+  pathOpacity = 0.2,
+  gradientStartColor = "var(--primary)",
+  gradientStopColor = "#6ba3ff",
   startXOffset = 0,
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
   direction = "horizontal",
-}: AnimatedBeamProps) {
+}) => {
   const id = useId();
   const [pathD, setPathD] = useState("");
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
-
   const gradientCoordinates =
     direction === "vertical"
       ? reverse
@@ -80,7 +80,7 @@ export function AnimatedBeam({
           };
 
   useEffect(() => {
-    function updatePath() {
+    const updatePath = () => {
       if (containerRef.current && fromRef.current && toRef.current) {
         const containerRect = containerRef.current.getBoundingClientRect();
         const rectA = fromRef.current.getBoundingClientRect();
@@ -99,7 +99,7 @@ export function AnimatedBeam({
         const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`;
         setPathD(d);
       }
-    }
+    };
 
     const resizeObserver = new ResizeObserver(() => {
       updatePath();
@@ -184,4 +184,4 @@ export function AnimatedBeam({
       </defs>
     </svg>
   );
-}
+};

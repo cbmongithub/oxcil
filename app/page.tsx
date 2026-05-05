@@ -1,27 +1,25 @@
-import { CallToAction } from "@/components/landing/call-to-action";
-import { FeaturesGrid } from "@/components/landing/features-grid";
-import { Footer } from "@/components/landing/footer";
-import { Hero } from "@/components/landing/hero";
-import { LogoMarquee } from "@/components/landing/logo-marquee";
-import { Navbar } from "@/components/landing/navbar";
+import { FaqSection } from "@/components/faq-section";
+import { FeaturedBlogsSection } from "@/components/featured-blogs-section";
+import { FeaturesSection } from "@/components/features-section";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { ModelsTableSection } from "@/components/models-table-section";
+import { Navbar } from "@/components/navbar";
+import { PricingSection } from "@/components/pricing-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
 
 export default function Home() {
   return (
-    <div className="bg-background relative min-h-screen overflow-x-hidden">
-      <div className="relative w-full">
-        <Navbar />
-        <main className="relative z-10 w-full">
-          <Hero />
-        </main>
-      </div>
-      <div className="relative z-10">
-        <div className="animate-fade-in-delayed relative z-10 pb-12">
-          <LogoMarquee />
-        </div>
-        <FeaturesGrid />
-        <CallToAction />
-      </div>
+    <main id="main-content">
+      <Navbar />
+      <HeroSection />
+      <FeaturesSection />
+      <ModelsTableSection />
+      <PricingSection />
+      <TestimonialsSection />
+      <FaqSection />
+      <FeaturedBlogsSection />
       <Footer />
-    </div>
+    </main>
   );
 }
