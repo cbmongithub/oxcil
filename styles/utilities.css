@@ -1,5 +1,29 @@
 @layer utilities {
-  /* Meteor animation - starts invisible, fades in, then fades out as it falls */
+  /* ============================================================
+     ANIMATION KEYFRAMES
+  ============================================================ */
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Meteor trail */
   @keyframes meteor-effect {
     0% {
       transform: rotate(-35deg) translateY(0);
@@ -21,7 +45,7 @@
     animation: meteor-effect linear infinite;
   }
 
-  /* Logo marquee infinite scroll animation */
+  /* Logo marquee infinite scroll */
   @keyframes marquee {
     0% {
       transform: translateX(0);
@@ -35,7 +59,7 @@
     animation: marquee 25s linear infinite;
   }
 
-  /* Navbar drop-in animation from -y */
+  /* Navbar drop-in from top */
   @keyframes navbar-drop {
     0% {
       transform: translateY(-100%);
@@ -51,7 +75,7 @@
     animation: navbar-drop 0.8s ease-out forwards;
   }
 
-  /* Hero h1 slide in from right animation */
+  /* Slide in from right */
   @keyframes slide-in-right {
     0% {
       transform: translateX(100px);
@@ -63,65 +87,7 @@
     }
   }
 
-  .animate-slide-in-right {
-    animation: slide-in-right 0.8s ease-out forwards;
-  }
-
-  /* Hero h1 bottom row slide up animation */
-  @keyframes slide-up {
-    0% {
-      transform: translateY(30px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  .animate-slide-up-delayed {
-    opacity: 0;
-    animation: slide-up 0.8s ease-out 0.3s forwards;
-  }
-
-  /* Added paragraph and buttons slide up animations with staggered delays */
-  .animate-slide-up-delayed-2 {
-    opacity: 0;
-    animation: slide-up 0.8s ease-out 0.5s forwards;
-  }
-
-  .animate-slide-up-delayed-3 {
-    opacity: 0;
-    animation: slide-up 0.8s ease-out 0.7s forwards;
-  }
-
-  /* Trusted by section fade-in animation with delay after main hero */
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .animate-fade-in-delayed {
-    opacity: 0;
-    animation: fade-in 1s ease-out 1s forwards;
-  }
-
-  /* Added slide-up animations for section header */
-  .animate-slide-up-section {
-    opacity: 0;
-    animation: slide-up 0.8s ease-out forwards;
-  }
-
-  .animate-slide-up-section-delayed {
-    opacity: 0;
-    animation: slide-up 0.8s ease-out 0.2s forwards;
-  }
-
-  /* Added slide-in-left animation for top row */
+  /* Slide in from left */
   @keyframes slide-in-left {
     0% {
       transform: translateX(-100px);
@@ -133,80 +99,78 @@
     }
   }
 
-  .animate-slide-in-left {
+  /* ============================================================
+     COMPOSABLE ANIMATION UTILITIES
+     Use CSS custom properties to control delay and duration
+     instead of generating a class per variant.
+
+     Usage:
+       <div
+         class="animate-slide-in-right"
+         style="--animate-delay: 0.2s; --animate-duration: 0.6s"
+       />
+
+     This replaces the numbered variant classes and is more
+     flexible for any stagger count.
+  ============================================================ */
+
+  .animate-slide-in-right {
     opacity: 0;
-    animation: slide-in-left 0.8s ease-out forwards;
+    animation: slide-in-right var(--animate-duration, 0.8s)
+      var(--animate-easing, ease-out) var(--animate-delay, 0s) forwards;
   }
 
-  /* Added slide-in-right delayed for bottom row */
+  .animate-slide-in-left {
+    opacity: 0;
+    animation: slide-in-left var(--animate-duration, 0.8s) var(--animate-easing, ease-out)
+      var(--animate-delay, 0s) forwards;
+  }
+
+  /* Section header animations — used in features.tsx and other sections.
+     Delay variants are composable via --animate-delay if needed. */
+  .animate-slide-up-section {
+    opacity: 0;
+    animation: slide-up var(--animate-duration, 0.8s) var(--animate-easing, ease-out)
+      var(--animate-delay, 0s) forwards;
+  }
+
+  /* Navbar hero one-off delayed variants — these have fixed semantics
+     and are not worth parameterising. Keep as named utilities. */
   .animate-slide-in-right-delayed {
     opacity: 0;
     animation: slide-in-right 0.8s ease-out 0.3s forwards;
   }
 
-  /* Added staggered animations for desktop row cards with 0.2s delays */
-  .animate-slide-in-left-1 {
+  .animate-fade-in-delayed {
     opacity: 0;
-    animation: slide-in-left 0.8s ease-out forwards;
+    animation: fade-in 1s ease-out 1s forwards;
   }
 
-  .animate-slide-in-left-2 {
+  /* slide-up named variants — used across hero, sections, and page headers */
+  .animate-slide-up-delayed {
     opacity: 0;
-    animation: slide-in-left 0.8s ease-out 0.2s forwards;
+    animation: slide-up 0.8s ease-out 0.3s forwards;
   }
 
-  .animate-slide-in-left-3 {
+  .animate-slide-up-delayed-2 {
     opacity: 0;
-    animation: slide-in-left 0.8s ease-out 0.4s forwards;
+    animation: slide-up 0.8s ease-out 0.5s forwards;
   }
 
-  .animate-slide-in-right-1 {
+  .animate-slide-up-delayed-3 {
     opacity: 0;
-    animation: slide-in-right 0.8s ease-out forwards;
+    animation: slide-up 0.8s ease-out 0.7s forwards;
   }
 
-  .animate-slide-in-right-2 {
+  .animate-slide-up-section-delayed {
     opacity: 0;
-    animation: slide-in-right 0.8s ease-out 0.2s forwards;
+    animation: slide-up 0.8s ease-out 0.2s forwards;
   }
 
-  .animate-slide-in-right-3 {
-    opacity: 0;
-    animation: slide-in-right 0.8s ease-out 0.4s forwards;
-  }
+  /* ============================================================
+     VERTICAL SCROLL ANIMATIONS (testimonials)
+  ============================================================ */
 
-  /* Added staggered slide-in-right animations for mobile cards */
-  .animate-slide-in-right-mobile-1 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out forwards;
-  }
-
-  .animate-slide-in-right-mobile-2 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out 0.15s forwards;
-  }
-
-  .animate-slide-in-right-mobile-3 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out 0.3s forwards;
-  }
-
-  .animate-slide-in-right-mobile-4 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out 0.45s forwards;
-  }
-
-  .animate-slide-in-right-mobile-5 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out 0.6s forwards;
-  }
-
-  .animate-slide-in-right-mobile-6 {
-    opacity: 0;
-    animation: slide-in-right 0.6s ease-out 0.75s forwards;
-  }
-
-  /* Added vertical scroll animations for testimonials */
   @keyframes scroll-up {
     0% {
       transform: translateY(0);
@@ -233,7 +197,10 @@
     animation: scroll-down linear infinite;
   }
 
-  /* Nav link hover underline effect - line slides in from left to right */
+  /* ============================================================
+     NAV LINK HOVER UNDERLINE
+  ============================================================ */
+
   .nav-link-hover {
     position: relative;
   }
@@ -250,8 +217,8 @@
     transform: scaleX(0);
     transform-origin: left center;
     transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
+      opacity var(--oxcil-duration-slow, 0.3s) var(--oxcil-ease-in-out, ease),
+      transform var(--oxcil-duration-slow, 0.3s) var(--oxcil-ease-in-out, ease);
   }
 
   .nav-link-hover:hover::after {
@@ -259,9 +226,10 @@
     transform: scaleX(1);
   }
 
-  /* Added 404 page animations */
+  /* ============================================================
+     404 PAGE ANIMATIONS
+  ============================================================ */
 
-  /* Floating orb animations */
   @keyframes float-slow {
     0%,
     100% {
@@ -298,16 +266,13 @@
   .animate-float-slow {
     animation: float-slow 8s ease-in-out infinite;
   }
-
   .animate-float-slower {
     animation: float-slower 12s ease-in-out infinite;
   }
-
   .animate-float-medium {
     animation: float-medium 6s ease-in-out infinite;
   }
 
-  /* 404 number animations */
   @keyframes spin-slow {
     0% {
       transform: rotate(0deg);
@@ -322,7 +287,6 @@
     animation: spin-slow 20s linear infinite;
   }
 
-  /* Orbiting dot around the 0 */
   @keyframes orbit {
     0% {
       transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg);
@@ -336,7 +300,6 @@
     animation: orbit 3s linear infinite;
   }
 
-  /* Glitch effect layers */
   @keyframes glitch-1 {
     0%,
     90%,
@@ -386,8 +349,29 @@
   .animate-glitch-1 {
     animation: glitch-1 5s ease-in-out infinite;
   }
-
   .animate-glitch-2 {
     animation: glitch-2 5s ease-in-out infinite 0.5s;
+  }
+
+  /* ============================================================
+     CELL RIPPLE
+     Uses CSS custom properties for per-element control.
+     Usage: style="--duration: 200ms; --delay: 50ms"
+  ============================================================ */
+
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-cell-ripple {
+    animation: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
   }
 }

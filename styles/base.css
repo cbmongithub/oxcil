@@ -1,6 +1,13 @@
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+  }
+
+  /* Scoped focus outline — only applied to interactive elements,
+     not every element on the page. The :focus-visible block below
+     handles the visual ring. */
+  :is(button, a, input, select, textarea, [tabindex]):focus-visible {
+    @apply outline-ring/50;
   }
 
   html {
@@ -12,17 +19,18 @@
     overflow-x: hidden;
   }
 
-  /* Selection */
+  /* ── Selection ─────────────────────────────────────────── */
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
   }
+
   ::-moz-selection {
     background: var(--primary);
     color: var(--primary-foreground);
   }
 
-  /* Scrollbar (WebKit) */
+  /* ── Scrollbar (WebKit) ─────────────────────────────────── */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -32,8 +40,9 @@
     background: var(--scrollbar-track);
   }
 
+  /* Fallback: uses the brand-600 primitive value directly */
   ::-webkit-scrollbar-thumb {
-    background: oklch(54.8% 0.222 262 / 0.4); /* fallback */
+    background: oklch(54.8% 0.222 262 / 0.4);
     border-radius: 9999px;
   }
 
@@ -41,7 +50,7 @@
     background: oklch(54.8% 0.222 262 / 0.6);
   }
 
-  /* Modern relative color support */
+  /* Progressive enhancement: derive from --primary token */
   @supports (color: oklch(from white l c h / 0.5)) {
     ::-webkit-scrollbar-thumb {
       background: oklch(from var(--primary) l c h / 0.4);
@@ -52,7 +61,7 @@
     }
   }
 
-  /* Firefox */
+  /* ── Scrollbar (Firefox) ────────────────────────────────── */
   * {
     scrollbar-width: thin;
     scrollbar-color: oklch(54.8% 0.222 262 / 0.4) var(--scrollbar-track);
@@ -64,14 +73,9 @@
     }
   }
 
-  /* Better focus visibility */
+  /* ── Focus ──────────────────────────────────────────────── */
   :focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--ring);
-  }
-
-  /* Smooth scroll (optional, but nice for marketing pages) */
-  html {
-    scroll-behavior: smooth;
   }
 }
